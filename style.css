@@ -142,6 +142,11 @@ input[type="checkbox"]:checked ~ .custom-checkbox svg{
     fill: var(--secondary-color);
 }
 
+input[type="checkbox"]:checked ~ .todo-text{
+    text-decoration: line-through;
+    color: gray;
+}
+
 @media(max-width: 500px){
     html{
         font-size: 12pt;
