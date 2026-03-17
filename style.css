@@ -123,6 +123,7 @@ form{
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 input[type="checkbox"]{
@@ -131,6 +132,14 @@ input[type="checkbox"]{
 
 input[type="checkbox"]:checked ~ .custom-checkbox{
     background-color: var(--accent-color);
+}
+
+.custom-checkbox svg {
+    fill: transparent;
+}
+
+input[type="checkbox"]:checked ~ .custom-checkbox svg{
+    fill: var(--secondary-color);
 }
 
 @media(max-width: 500px){
