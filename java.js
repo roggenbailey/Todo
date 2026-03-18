@@ -13,7 +13,11 @@ todoForm.addEventListener("submit", function(e){
 function addTodo(){
     const todoText = todoInput.value.trim();
     if(todoText.length > 0){
-        allTodos.push(todoText);
+        const todoObject = {
+            text: todoText,
+            completed: false
+        }
+        allTodos.push(todoObject);
         updateTodoListUI();
         saveTodos();
         todoInput.value = "";
@@ -28,10 +32,11 @@ function updateTodoListUI(){
     })
 }
 
-function createTodoItem(todoText, todoIndex){
+function createTodoItem(todo, todoIndex){
     const todoId = "todo-"+todoIndex;
     const todoLi = document.createElement("li");
     todoLi.className = "todo";
+    const todoText = todo.text;
     todoLi.innerHTML = 
        ` <input type="checkbox" id="${todoId}">
         <label for="${todoId}" class="custom-checkbox">
@@ -49,6 +54,12 @@ function createTodoItem(todoText, todoIndex){
         deleteTodoItem(todoIndex);
     })
     
+    let checkbox = todoLi.querySelector("input");
+    checkbox.addEventListener("change", function(){
+        allTodos[todoIndex].completed = checkbox.checked;
+        saveTodos();
+    })
+    checkbox.checked = todo.completed;
     return todoLi;
 }
 
